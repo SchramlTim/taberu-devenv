@@ -9,9 +9,9 @@
 ## setup
 
 ```console
-    git clone git@github.com:SchramlTim/taberu.git src
-    make api-composer-install
-    make frontend-package-install
-    docker-compose up -d
-    make migrate
+git clone git@github.com:SchramlTim/taberu.git src
+make api-composer-install
+make frontend-package-install
+docker-compose up -d
+make migrate
 ```
