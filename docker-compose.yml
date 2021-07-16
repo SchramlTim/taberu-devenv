@@ -22,3 +22,8 @@ services:
       - 5432:5432
     environment:
       - POSTGRES_PASSWORD=test
+  node:
+    image: node:16.5-slim
+    volumes:
+    - ./src/frontend:/app/
+    working_dir: /app
