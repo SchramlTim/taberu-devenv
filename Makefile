@@ -5,3 +5,5 @@ api-composer-install:
 	docker-compose exec composer composer install
 frontend-package-install:
 	docker-compose exec node npm ci
+seed:
+	docker-compose exec api /bin/bash -c "cd /srv/code && php vendor/bin/phinx seed:run"
