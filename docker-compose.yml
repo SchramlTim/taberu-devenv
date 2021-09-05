@@ -21,7 +21,9 @@ services:
     ports:
     - 1337:80
     volumes:
-      - ./src/frontend/build:/srv/code/
+      - ./src/frontend/server.js:/node/server.js
+      - ./src/frontend/build:/node/build
+      - ./src/frontend/node_modules:/node/node_modules
   db:
     image: postgres:9.6
     volumes:
@@ -35,3 +37,14 @@ services:
     volumes:
     - ./src/frontend:/app/
     working_dir: /app
+  proxy:
+    image: nginx:1.19.10-alpine
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./services/proxy/conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./services/proxy/certs:/etc/nginx/certs
+    depends_on:
+      - app
+      - api
