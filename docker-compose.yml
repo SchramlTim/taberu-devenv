@@ -21,9 +21,7 @@ services:
     ports:
     - 1337:80
     volumes:
-      - ./src/frontend/server.js:/node/server.js
-      - ./src/frontend/build:/node/build
-      - ./src/frontend/node_modules:/node/node_modules
+      - ./src/frontend/:/node
   db:
     image: postgres:9.6
     volumes:
