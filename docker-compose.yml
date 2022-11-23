@@ -4,12 +4,13 @@ services:
     build: services/api
     environment:
       - PORT=80
-      - DATABASE_URL=postgres://test:test@db:5432/taberu
     ports:
     - 8080:80
     volumes:
       - ./src/api:/srv/code/
     working_dir: /srv/code/
+    env_file:
+      - .devenv
   composer:
     image: composer:2.1.3
     volumes:
@@ -18,6 +19,7 @@ services:
     build: services/frontend
     environment:
       - PORT=80
+      - REACT_APP_API_ENDPOINT=https://taberu.localhost
     ports:
     - 1337:80
     volumes:
@@ -34,6 +36,8 @@ services:
     image: node:16.5-slim
     volumes:
     - ./src/frontend:/app/
+    environment:
+      - REACT_APP_API_ENDPOINT=https://taberu.localhost
     working_dir: /app
   proxy:
     image: nginx:1.19.10-alpine
