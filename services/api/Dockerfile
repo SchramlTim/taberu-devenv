@@ -1,5 +1,5 @@
 # Based on the PHP image for PHP 7.3 running with Apache
-FROM php:7.4-apache
+FROM php:8.2-apache
 
 # Run Apache and PHP as user www-data
 ENV APACHE_RUN_USER=www-data APACHE_RUN_GROUP=www-data
@@ -7,9 +7,6 @@ ENV APACHE_RUN_USER=www-data APACHE_RUN_GROUP=www-data
 RUN \
 # Use the default production configuration
   mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
-# Install the redis extension
-  && pecl install redis-5.0.1 \
-  && docker-php-ext-enable redis \
 # Install the pdo and pdo_mysql extension
   && docker-php-ext-install pdo \
 # Install the gd extension
